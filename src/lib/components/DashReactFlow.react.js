@@ -3,13 +3,8 @@ import PropTypes from 'prop-types'
 import ReactFlow, {
   addEdge,
   useNodesState,
-  useEdgesState,
-  useEdges
+  useEdgesState
 } from 'react-flow-renderer'
-
-// const fitViewOptions = {
-//   padding: 0.2
-// }
 
 const DashReactFlow = (props) => {
   const {
@@ -17,6 +12,7 @@ const DashReactFlow = (props) => {
     nodes,
     edges,
     defaultEdgeOptions,
+    fitViewOptions,
     setProps
   } = props
 
@@ -24,12 +20,18 @@ const DashReactFlow = (props) => {
   const [currentEdges, setEdges, onEdgesChange] = useEdgesState(edges)
 
   const onConnect = useCallback(
-    (connection) => setEdges((eds) => {
-      addEdge(connection, eds)
-      console.log(eds)
-      // setProps({ edges: edges })
-    }),
-    [setEdges]
+    (connection) => {
+      setEdges(
+        (eds) => {
+          console.log(eds)
+          const neweds = addEdge(connection, eds)
+          console.log(neweds)
+          setProps({ edges: neweds })
+          return neweds
+        }
+      )
+    },
+    [setProps, setEdges]
   )
 
   return (
@@ -40,7 +42,7 @@ const DashReactFlow = (props) => {
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
-      // fitViewOptions={fitViewOptions}
+      fitViewOptions={fitViewOptions}
       defaultEdgeOptions={defaultEdgeOptions}
     />
   )
@@ -87,9 +89,14 @@ DashReactFlow.propTypes = {
   defaultEdgeOptions: PropTypes.object,
 
   /**
+   * The fit view options
+   */
+   fitViewOptions: PropTypes.object,
+
+  /**
    * Dash-assigned callback that gets fired when the value changes.
    */
-   setProps: PropTypes.func
+  setProps: PropTypes.func
 
 }
 

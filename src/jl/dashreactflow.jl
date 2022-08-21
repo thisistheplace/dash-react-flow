@@ -11,6 +11,7 @@ Keyword arguments:
 - `id` (String; required): The ID used to identify this component in Dash callbacks.
 - `defaultEdgeOptions` (Dict; optional): The default edge options
 - `edges` (Array of Dicts; optional): The edges which connect the flow chart
+- `fitViewOptions` (Dict; optional): The fit view options
 - `nodes` (optional): The nodes which make up the flow chart. nodes has the following type: Array of lists containing elements 'id', 'data', 'position'.
 Those elements have the following types:
   - `id` (String; optional)
@@ -23,7 +24,7 @@ Those elements have the following types:
   - `y` (Real; optional)s
 """
 function dashreactflow(; kwargs...)
-        available_props = Symbol[:id, :defaultEdgeOptions, :edges, :nodes]
+        available_props = Symbol[:id, :defaultEdgeOptions, :edges, :fitViewOptions, :nodes]
         wild_props = Symbol[]
         return Component("dashreactflow", "DashReactFlow", "dash_react_flow", available_props, wild_props; kwargs...)
 end

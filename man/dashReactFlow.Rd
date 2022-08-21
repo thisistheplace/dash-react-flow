@@ -10,7 +10,8 @@
 }
 
 \usage{
-dashReactFlow(id=NULL, defaultEdgeOptions=NULL, edges=NULL, nodes=NULL)
+dashReactFlow(id=NULL, defaultEdgeOptions=NULL, edges=NULL,
+fitViewOptions=NULL, nodes=NULL)
 }
 
 \arguments{
@@ -19,6 +20,8 @@ dashReactFlow(id=NULL, defaultEdgeOptions=NULL, edges=NULL, nodes=NULL)
 \item{defaultEdgeOptions}{Named list. The default edge options}
 
 \item{edges}{List of named lists. The edges which connect the flow chart}
+
+\item{fitViewOptions}{Named list. The fit view options}
 
 \item{nodes}{List of lists containing elements 'id', 'data', 'position'.
 those elements have the following types:

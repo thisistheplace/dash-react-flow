@@ -18,6 +18,9 @@ Keyword arguments:
 - edges (list of dicts; optional):
     The edges which connect the flow chart.
 
+- fitViewOptions (dict; optional):
+    The fit view options.
+
 - nodes (list of dicts; optional):
     The nodes which make up the flow chart.
 
@@ -43,10 +46,10 @@ Keyword arguments:
     _namespace = 'dash_react_flow'
     _type = 'DashReactFlow'
     @_explicitize_args
-    def __init__(self, id=Component.REQUIRED, nodes=Component.UNDEFINED, edges=Component.UNDEFINED, defaultEdgeOptions=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'defaultEdgeOptions', 'edges', 'nodes']
+    def __init__(self, id=Component.REQUIRED, nodes=Component.UNDEFINED, edges=Component.UNDEFINED, defaultEdgeOptions=Component.UNDEFINED, fitViewOptions=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'defaultEdgeOptions', 'edges', 'fitViewOptions', 'nodes']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'defaultEdgeOptions', 'edges', 'nodes']
+        self.available_properties = ['id', 'defaultEdgeOptions', 'edges', 'fitViewOptions', 'nodes']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

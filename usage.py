@@ -1,5 +1,5 @@
 import dash_react_flow
-from dash import Dash, html
+from dash import Dash, html, Input, Output, dcc
 
 app = Dash(__name__)
 
@@ -17,13 +17,28 @@ fitViewOptions = {
 }
 
 app.layout = html.Div(
-    dash_react_flow.DashReactFlow(
-        id='input',
-        nodes=initialNodes,
-        edges=initialEdges
-    ),
+    [
+      dcc.ConfirmDialog(
+          id='confirm-edge',
+          message='An edge has been added!',
+      ),
+      dash_react_flow.DashReactFlow(
+          id='flow-chart',
+          nodes=initialNodes,
+          edges=initialEdges,
+          fitViewOptions=fitViewOptions
+      ),
+    ],
     style={"width":"100vw", "height": "100vh"}
 )
+
+@app.callback(
+  Output('confirm-edge', 'displayed'),
+  Input('flow-chart', 'edges'),
+  prevent_initial_callback=True
+)
+def new_edge_alert(new_edges):
+  return True
 
 if __name__ == '__main__':
     app.run_server(debug=True)

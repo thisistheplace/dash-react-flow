@@ -79,6 +79,20 @@
           "value": "{ animated: true }",
           "computed": false
         }
+      },
+      "fitViewOptions": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "The fit view options"
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that gets fired when the value changes."
       }
     }
   }

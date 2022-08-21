@@ -14,6 +14,7 @@ const DashReactFlow = (props) => {
     edges,
     defaultEdgeOptions,
     fitViewOptions,
+    style,
     setProps
   } = props
 
@@ -60,6 +61,7 @@ const DashReactFlow = (props) => {
       onConnect={onConnect}
       fitViewOptions={fitViewOptions}
       defaultEdgeOptions={defaultEdgeOptions}
+      style={style}
     >
       <Controls/>
     </ReactFlow>
@@ -69,7 +71,8 @@ const DashReactFlow = (props) => {
 DashReactFlow.defaultProps = {
   nodes: [],
   edges: [],
-  defaultEdgeOptions: { animated: true }
+  defaultEdgeOptions: { animated: true },
+  style: {}
 }
 
 DashReactFlow.propTypes = {
@@ -110,6 +113,11 @@ DashReactFlow.propTypes = {
    * The fit view options
    */
   fitViewOptions: PropTypes.object,
+
+  /**
+   * The reactFlowStyle
+   */
+  style: PropTypes.object,
 
   /**
    * Dash-assigned callback that gets fired when the value changes.

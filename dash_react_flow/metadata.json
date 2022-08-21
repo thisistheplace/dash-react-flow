@@ -87,6 +87,17 @@
         "required": false,
         "description": "The fit view options"
       },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "The reactFlowStyle",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      },
       "setProps": {
         "type": {
           "name": "func"

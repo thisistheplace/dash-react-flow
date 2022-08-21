@@ -11,7 +11,7 @@
 
 \usage{
 dashReactFlow(id=NULL, defaultEdgeOptions=NULL, edges=NULL,
-fitViewOptions=NULL, nodes=NULL)
+fitViewOptions=NULL, nodes=NULL, style=NULL)
 }
 
 \arguments{
@@ -33,6 +33,8 @@ those elements have the following types:
 those elements have the following types:
   - x (numeric; optional)
   - y (numeric; optional)s. The nodes which make up the flow chart}
+
+\item{style}{Named list. The reactFlowStyle}
 }
 
 \value{named list of JSON elements corresponding to React.js properties and their values}

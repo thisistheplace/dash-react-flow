@@ -1,9 +1,9 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 #' @export
-dashReactFlow <- function(id=NULL, defaultEdgeOptions=NULL, edges=NULL, fitViewOptions=NULL, nodes=NULL) {
+dashReactFlow <- function(id=NULL, defaultEdgeOptions=NULL, edges=NULL, fitViewOptions=NULL, nodes=NULL, style=NULL) {
     
-    props <- list(id=id, defaultEdgeOptions=defaultEdgeOptions, edges=edges, fitViewOptions=fitViewOptions, nodes=nodes)
+    props <- list(id=id, defaultEdgeOptions=defaultEdgeOptions, edges=edges, fitViewOptions=fitViewOptions, nodes=nodes, style=style)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -11,7 +11,7 @@ dashReactFlow <- function(id=NULL, defaultEdgeOptions=NULL, edges=NULL, fitViewO
         props = props,
         type = 'DashReactFlow',
         namespace = 'dash_react_flow',
-        propNames = c('id', 'defaultEdgeOptions', 'edges', 'fitViewOptions', 'nodes'),
+        propNames = c('id', 'defaultEdgeOptions', 'edges', 'fitViewOptions', 'nodes', 'style'),
         package = 'dashReactFlow'
         )
 

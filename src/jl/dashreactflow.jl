@@ -22,9 +22,10 @@ Those elements have the following types:
 Those elements have the following types:
   - `x` (Real; optional)
   - `y` (Real; optional)s
+- `style` (Dict; optional): The reactFlowStyle
 """
 function dashreactflow(; kwargs...)
-        available_props = Symbol[:id, :defaultEdgeOptions, :edges, :fitViewOptions, :nodes]
+        available_props = Symbol[:id, :defaultEdgeOptions, :edges, :fitViewOptions, :nodes, :style]
         wild_props = Symbol[]
         return Component("dashreactflow", "DashReactFlow", "dash_react_flow", available_props, wild_props; kwargs...)
 end

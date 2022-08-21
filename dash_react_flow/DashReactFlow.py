@@ -40,16 +40,19 @@ Keyword arguments:
 
         - x (number; optional)
 
-        - y (number; optional)"""
+        - y (number; optional)
+
+- style (dict; optional):
+    The reactFlowStyle."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'dash_react_flow'
     _type = 'DashReactFlow'
     @_explicitize_args
-    def __init__(self, id=Component.REQUIRED, nodes=Component.UNDEFINED, edges=Component.UNDEFINED, defaultEdgeOptions=Component.UNDEFINED, fitViewOptions=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'defaultEdgeOptions', 'edges', 'fitViewOptions', 'nodes']
+    def __init__(self, id=Component.REQUIRED, nodes=Component.UNDEFINED, edges=Component.UNDEFINED, defaultEdgeOptions=Component.UNDEFINED, fitViewOptions=Component.UNDEFINED, style=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'defaultEdgeOptions', 'edges', 'fitViewOptions', 'nodes', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'defaultEdgeOptions', 'edges', 'fitViewOptions', 'nodes']
+        self.available_properties = ['id', 'defaultEdgeOptions', 'edges', 'fitViewOptions', 'nodes', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

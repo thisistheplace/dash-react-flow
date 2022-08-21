@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import ReactFlow, {
   addEdge,
   useNodesState,
-  useEdgesState
+  useEdgesState,
+  useEdges
 } from 'react-flow-renderer'
 
 // const fitViewOptions = {
@@ -15,14 +16,19 @@ const DashReactFlow = (props) => {
     id,
     nodes,
     edges,
-    defaultEdgeOptions
+    defaultEdgeOptions,
+    setProps
   } = props
 
   const [currentNodes, setNodes, onNodesChange] = useNodesState(nodes)
   const [currentEdges, setEdges, onEdgesChange] = useEdgesState(edges)
 
   const onConnect = useCallback(
-    (connection) => setEdges((eds) => addEdge(connection, eds)),
+    (connection) => setEdges((eds) => {
+      addEdge(connection, eds)
+      console.log(eds)
+      // setProps({ edges: edges })
+    }),
     [setEdges]
   )
 
@@ -78,7 +84,13 @@ DashReactFlow.propTypes = {
   /**
    * The default edge options
    */
-  defaultEdgeOptions: PropTypes.object
+  defaultEdgeOptions: PropTypes.object,
+
+  /**
+   * Dash-assigned callback that gets fired when the value changes.
+   */
+   setProps: PropTypes.func
+
 }
 
 export default DashReactFlow

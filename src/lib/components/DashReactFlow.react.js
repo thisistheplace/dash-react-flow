@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import ReactFlow, {
+  Controls,
   addEdge,
   useEdgesState,
   applyNodeChanges
@@ -59,7 +60,9 @@ const DashReactFlow = (props) => {
       onConnect={onConnect}
       fitViewOptions={fitViewOptions}
       defaultEdgeOptions={defaultEdgeOptions}
-    />
+    >
+      <Controls/>
+    </ReactFlow>
   )
 }
 

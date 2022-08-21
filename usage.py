@@ -20,7 +20,7 @@ initialData = {
 }
 
 fitViewOptions = {
-  "padding": 0.2
+  "padding": 0.0
 }
 
 def new_node(num):

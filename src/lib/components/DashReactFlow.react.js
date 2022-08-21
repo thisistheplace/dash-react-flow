@@ -1,61 +1,84 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback } from 'react'
+import PropTypes from 'prop-types'
+import ReactFlow, {
+  addEdge,
+  useNodesState,
+  useEdgesState
+} from 'react-flow-renderer'
 
-/**
- * ExampleComponent is an example component.
- * It takes a property, `label`, and
- * displays it.
- * It renders an input with the property `value`
- * which is editable by the user.
- */
-export default class DashReactFlow extends Component {
-    render() {
-        const {id, label, setProps, value} = this.props;
+// const fitViewOptions = {
+//   padding: 0.2
+// }
 
-        return (
-            <div id={id}>
-                ExampleComponent: {label}&nbsp;
-                <input
-                    value={value}
-                    onChange={
-                        /*
-                         * Send the new value to the parent component.
-                         * setProps is a prop that is automatically supplied
-                         * by dash's front-end ("dash-renderer").
-                         * In a Dash app, this will update the component's
-                         * props and send the data back to the Python Dash
-                         * app server if a callback uses the modified prop as
-                         * Input or State.
-                         */
-                        e => setProps({ value: e.target.value })
-                    }
-                />
-            </div>
-        );
-    }
+const DashReactFlow = (props) => {
+  const {
+    id,
+    nodes,
+    edges,
+    defaultEdgeOptions
+  } = props
+
+  const [currentNodes, setNodes, onNodesChange] = useNodesState(nodes)
+  const [currentEdges, setEdges, onEdgesChange] = useEdgesState(edges)
+
+  const onConnect = useCallback(
+    (connection) => setEdges((eds) => addEdge(connection, eds)),
+    [setEdges]
+  )
+
+  return (
+    <ReactFlow
+      id={id}
+      nodes={currentNodes}
+      edges={currentEdges}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      onConnect={onConnect}
+      // fitViewOptions={fitViewOptions}
+      defaultEdgeOptions={defaultEdgeOptions}
+    />
+  )
 }
 
-DashReactFlow.defaultProps = {};
+DashReactFlow.defaultProps = {
+  nodes: [],
+  edges: [],
+  defaultEdgeOptions: { animated: true }
+}
 
 DashReactFlow.propTypes = {
-    /**
-     * The ID used to identify this component in Dash callbacks.
-     */
-    id: PropTypes.string,
+  /**
+   * The ID used to identify this component in Dash callbacks.
+   */
+  id: PropTypes.string.isRequired,
 
-    /**
-     * A label that will be printed when this component is rendered.
-     */
-    label: PropTypes.string.isRequired,
+  /**
+   * The nodes which make up the flow chart
+   */
+  nodes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      data: PropTypes.shape({
+        label: PropTypes.string
+      }),
+      position: PropTypes.shape({
+        x: PropTypes.number,
+        y: PropTypes.number
+      })
+    })
+  ),
 
-    /**
-     * The value displayed in the input.
-     */
-    value: PropTypes.string,
+  /**
+   * The edges which connect the flow chart
+   */
+  edges: PropTypes.arrayOf(
+    PropTypes.object
+  ),
 
-    /**
-     * Dash-assigned callback that should be called to report property changes
-     * to Dash, to make them available for callbacks.
-     */
-    setProps: PropTypes.func
-};
+  /**
+   * The default edge options
+   */
+  defaultEdgeOptions: PropTypes.object
+}
+
+export default DashReactFlow
